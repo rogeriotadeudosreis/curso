@@ -13,25 +13,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rogerioreis.curso.dao.AlunoDao;
 import br.com.rogerioreis.curso.entity.Aluno;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/aluno")
+@RequestMapping("/curso")
+@Api(value = "API Rest Curso")
 public class AlunoRest {
 	
 	@Autowired
 	private AlunoDao alunoDao;
 	
 	@GetMapping
+	@ApiOperation(value = "Retorna uma lista de alunos")
 	public List<Aluno> get(){
 		return alunoDao.findAll();
 	}
 	
 	@PostMapping
+	@ApiOperation(value = "Salva ou atualiza um aluno")
 	public void post(@RequestBody Aluno aluno) {
 		alunoDao.save(aluno);
 	}
 	
 	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Deleta um aluno")
 	public void delete(@PathVariable("id") Long id) {
 		alunoDao.deleteById(id);
 	}

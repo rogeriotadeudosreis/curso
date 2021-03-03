@@ -13,25 +13,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rogerioreis.curso.dao.CursoDao;
 import br.com.rogerioreis.curso.entity.Curso;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/curso")
+@RequestMapping("/cursos")
 public class CursoRest  {
 	
 	@Autowired
 	private CursoDao cursoDao;
 	
 	@GetMapping
+	@ApiOperation(value = "Retorna uma lista de cursos")
 	public List<Curso> get(){
 		return cursoDao.findAll();
 	}
 	
 	@PostMapping
+	@ApiOperation(value = "Salva ou atualiza um curso")
 	public void post(@RequestBody Curso curso) {
 		cursoDao.save(curso);
 	}
 	
 	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Deleta um curso")
 	public void delete (@PathVariable("id") Long id) {
 		cursoDao.deleteById(id);
 	}
