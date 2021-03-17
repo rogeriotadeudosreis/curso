@@ -3,6 +3,7 @@ package br.com.rogerioreis.curso.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +34,7 @@ public class TurmaRest {
 		turmaDao.save(turma);
 	}
 	
-	@GetMapping("/{id}")
+	@DeleteMapping("/{id}")
 	@ApiOperation(value = "Deleta uma turma")
 	public void delete(@PathVariable("id") Long id) {
 		 turmaDao.deleteById(id);
